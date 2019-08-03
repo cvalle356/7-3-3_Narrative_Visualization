@@ -118,13 +118,26 @@ var gTimeframes = $svg
     .append("g").attr("class", "timeframe")
 	.attr('transform', `translate(${margin.left}, ${margin.top})`);
 
+ var tooltip = d3.select("body")
+	.append("div")
+	.style("position", "absolute")
+	.style("z-index", "10")
+	.style("visibility", "hidden")
+	.text("The areas in grey are areas of recession. Notice the dip in the index right before this period.");
+
+
+
 gTimeframes.append("rect")
     .attr("x", function(d) { return x(d.RangeStart); })
     .attr("y", 0)
     .attr("width", function(d) { return x(d.RangeEnd) - x(d.RangeStart); })
     .attr("height", height)
     .style("fill", function(d) { return d.Color; })
-	.style("opacity","0.5");
+	.style("opacity","0.5")
+	.on("mouseover", function(){return tooltip.style("visibility", "visible");})
+	.on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+	.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+	;
 
 //gTimeframes.append("text")
 //    .attr("x", function(d) { return x(d.RangeStart) + 5; })
@@ -132,29 +145,6 @@ gTimeframes.append("rect")
 //    .text(function(d) { return d.Label; });
     //end timeframe
 
- var tooltip = d3.selectAll(".timeframe")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
-
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    tooltip.style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    tooltip
-      .html("A dip in the index can be observed before ressions.")
-      .style("left", (d3.mouse(this)[0]+70) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
-  }
-  var mouseleave = function(d) {
-    tooltip.style("opacity", 0)
-  }
 
 
   const path = $plot.selectAll('path')
