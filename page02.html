@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<style> 
+  body { 
+      font-family: "avenir next", Arial, sans-serif;
+      font-size: 12px;
+      margin: 0;
+      color: #666;
+    }
+
+    #vis {
+      min-width: 300px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .axis path, .axis line {
+      fill: none;
+      stroke: #666;
+      shape-rendering: crispEdges;
+    }
+
+    .line {
+      fill: none;
+      stroke-width: 1.5px;
+    }
+
+    #line-Highlight {
+      stroke-width: 2px;
+    }
+
+    .baseline {
+      stroke: #666;
+    }
+    p {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    }
+</style>
+<head>
+  <meta charset="utf-8">
+  <title>US Debt and Income</title>
+  <meta name="description" content="Narrative Visualization">
+  <meta name="author" content="carlosv3">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+<br/>
+<p id = "naveele" width = "800" >
+&nbsp;
+<button type="button" onclick=
+"window.location.href='/page01.html'" class="btn btn-primary">Yield Curve</button>
+&nbsp;
+<button type="button" onclick=
+"window.location.href='/page02.html'" class="btn btn-primary">Microeconomic</button>
+&nbsp;
+<button type="button" onclick=
+"window.location.href='/page03.html'" class="btn btn-primary">Local View</button>
+&nbsp; 
+</p>
+<p>
+The chart below displays the debt and income levels for the mediam household in the US. You can switch to see
+the debt-to-income ratio for the median US household over the same period by selecting below. The grey shaded area in the chart indicates recession. 
+The household data is from the New York Fed and the income date is from the St. Louis Fed. <br />
+<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+   <select id = "opts">
+   <option value="dummy-data" selected="selected">Income and Debt</option>
+   <option value="dti">Debt to Income</option> 
+   </select>   
+
+</p>
+
+
+<div id='vis'></div>
+
+
+  <!-- External JS libraries -->
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <!-- Custom JS -->
+  <script src="js/debounce.js"></script>
+  <script src="js/main.js"></script>
+
+  
+</body>
+</html>
